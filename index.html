@@ -325,6 +325,11 @@ a.t{text-decoration:none;transition:translate .2s}a.t:hover{translate:0 -2px}
 .pg div{display:flex;flex-wrap:wrap;gap:6px}
 .pg span{font:600 14px Inter,sans-serif;padding:6px 12px;border-radius:99px;background:var(--tint);color:var(--ink)}
 .pg.ec span{background:var(--butter)}.pg.ad span{background:var(--sage)}
+
+.ch.dim{opacity:.16!important;filter:grayscale(.7)}
+.ch.hit::before{content:"";position:absolute;left:calc(-1 * clamp(16px,3vw,32px) - 7px);top:34px;width:12px;height:12px;border-radius:99px;background:var(--coral);box-shadow:0 0 0 5px var(--blush)}
+.ch{position:relative}
+.ch.dim,.ch.hit{transition:opacity .35s,filter .35s}
 </style>
 </head>
 <body>
@@ -414,6 +419,7 @@ a.t{text-decoration:none;transition:translate .2s}a.t:hover{translate:0 -2px}
     <aside class="rail">
       <div class="yr" id="yr">Childhood</div>
       <p>Scroll the journey, or follow one thread through it.</p>
+      <p class="note" id="threadHint" aria-live="polite" style="min-height:2.6em">Tap a thread to jump to its chapters.</p>
       <div class="threads" role="group" aria-label="Follow a thread">
         <button class="chip" data-t="camera" aria-pressed="false">The lens</button>
         <button class="chip" data-t="sports" aria-pressed="false">The field</button>
@@ -748,7 +754,12 @@ const chs=[...document.querySelectorAll(".ch")];let thread=null;
 document.querySelectorAll(".threads .chip").forEach(c=>c.addEventListener("click",()=>{
 thread=thread===c.dataset.t?null:c.dataset.t;
 document.querySelectorAll(".threads .chip").forEach(x=>x.setAttribute("aria-pressed",x.dataset.t===thread));
-chs.forEach(ch=>ch.classList.toggle("dim",!!thread&&!ch.dataset.t.split(" ").includes(thread)))}));
+const names={camera:"the lens",sports:"the field",writing:"the page",stage:"the stage",ai:"the system"};
+const hint=document.getElementById("threadHint");
+let hits=[];
+chs.forEach(ch=>{const on=!!thread&&ch.dataset.t.split(" ").includes(thread);ch.classList.toggle("dim",!!thread&&!on);ch.classList.toggle("hit",on);if(on)hits.push(ch)});
+if(thread){hint.textContent=hits.length+" chapters on "+names[thread]+". Tap again to show all.";hits[0].scrollIntoView({block:"start"});hits[0].animate([{background:"color-mix(in srgb,#EED9A6 50%,transparent)"},{background:"transparent"}],{duration:1400})}
+else{hint.textContent="Showing every chapter."}}));
 
 /* year rail */
 const yr=document.getElementById("yr");
