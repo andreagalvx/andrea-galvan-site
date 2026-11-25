@@ -758,7 +758,7 @@ const names={camera:"the lens",sports:"the field",writing:"the page",stage:"the 
 const hint=document.getElementById("threadHint");
 let hits=[];
 chs.forEach(ch=>{const on=!!thread&&ch.dataset.t.split(" ").includes(thread);ch.classList.toggle("dim",!!thread&&!on);ch.classList.toggle("hit",on);if(on)hits.push(ch)});
-if(thread){hint.textContent=hits.length+" chapters on "+names[thread]+". Tap again to show all.";hits[0].scrollIntoView({block:"start"});hits[0].animate([{background:"color-mix(in srgb,#EED9A6 50%,transparent)"},{background:"transparent"}],{duration:1400})}
+if(thread){hint.textContent=hits.length+" chapters on "+names[thread]+". Tap again to show all.";const home={camera:"Childhood",sports:"2012",writing:"2016",stage:"2019",ai:"2025"}[thread];const tgt=hits.find(h=>h.dataset.y===home)||hits[0];tgt.scrollIntoView({block:"start"});tgt.animate([{background:"color-mix(in srgb,#EED9A6 50%,transparent)"},{background:"transparent"}],{duration:1400})}
 else{hint.textContent="Showing every chapter."}}));
 
 /* year rail */
