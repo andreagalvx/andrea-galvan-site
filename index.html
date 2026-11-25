@@ -330,7 +330,7 @@ a.t{text-decoration:none;transition:translate .2s}a.t:hover{translate:0 -2px}
 .ch.hit::before{content:"";position:absolute;left:calc(-1 * clamp(16px,3vw,32px) - 7px);top:34px;width:12px;height:12px;border-radius:99px;background:var(--coral);box-shadow:0 0 0 5px var(--blush)}
 .ch{position:relative}
 .ch.dim,.ch.hit{transition:opacity .35s,filter .35s}
-</style>
+.duo .frame span{font-size:15px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}</style>
 </head>
 <body>
 <div class="progress" aria-hidden="true"></div>
@@ -496,6 +496,10 @@ a.t{text-decoration:none;transition:translate .2s}a.t:hover{translate:0 -2px}
             <a class="ep" href="https://www.facebook.com/share/v/1EJ6BJnFpt/" target="_blank" rel="noopener"><b>2018</b>Pep Rally highlights, NCAA Season 94</a>
           </div>
           <div class="clip" style="--r:-1deg;margin-top:8px"><small>My Facebook post · 2018</small><b>"It is finally official."</b><p>I am Andrea Galvan and I am the Sports Editor of the official student publication of San Sebastian College‑Recoletos Manila, The Sebastinian, for this academic year. Bravo Baste!</p></div>
+          <div class="duo" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:6px">
+            <button class="frame" data-g="7" style="--r:-2deg;--tape:var(--blush)"><img src="img/sebastinian-moa.jpg" alt="Andrea Galvan with her camera and press ID at the Mall of Asia Arena, covering the NCAA for The Sebastinian" loading="lazy" style="aspect-ratio:1/1;object-position:60% 30%"><span>At MOA Arena</span></button>
+            <button class="frame" data-g="8" style="--r:2deg;--tape:var(--sky)"><img src="img/ncaa93-pass.jpg" alt="Andrea Galvan's NCAA Season 93 media pass held up courtside" loading="lazy" style="aspect-ratio:1/1"><span>NCAA 93 press pass</span></button>
+          </div>
           <button class="frame" data-g="5" style="--r:1.5deg;--tape:var(--lilac)"><img src="img/magic-street-team.jpg" alt="Andrea Galvan with the Magic 89.9 Street Team after a session with Doc Gia Sison" loading="lazy"><span>Street Team: resiliency talk</span></button>
           <button class="frame" data-g="6" style="--r:-2deg;--tape:var(--butter)"><img src="img/magic-storytelling.jpg" alt="Andrea Galvan at the Magic 89.9 Street Team Storytelling 101 session with Serge Gabriel" loading="lazy"><span>Street Team: Storytelling 101</span></button>
         </div>
@@ -767,7 +771,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)yr.text
 chs.forEach(c=>io.observe(c));
 
 /* lightbox */
-const gal=[["img/mugtalk-podium.jpg","Hosting Mug Talk @ CEU, October 2019"],["img/ceu-group.jpg","With the CEU Communication and Media community after Mug Talk"],["img/bravo-tv.jpg","One on One with Andrea Galvan, my Bravo TV segment"],["img/mugtalk-poster.jpg","Mug Talk poster: Donya Ada sa Pelikula? Bakit Hindi!"],["img/mugtalk-backdrop.jpg","The Mug Talk @ CEU stage backdrop"],["img/magic-street-team.jpg","Magic 89.9 Street Team Sessions: resiliency and mental health with Doc Gia Sison"],["img/magic-storytelling.jpg","Magic 89.9 Street Team Sessions: Storytelling 101 with Serge Gabriel"]];
+const gal=[["img/mugtalk-podium.jpg","Hosting Mug Talk @ CEU, October 2019"],["img/ceu-group.jpg","With the CEU Communication and Media community after Mug Talk"],["img/bravo-tv.jpg","One on One with Andrea Galvan, my Bravo TV segment"],["img/mugtalk-poster.jpg","Mug Talk poster: Donya Ada sa Pelikula? Bakit Hindi!"],["img/mugtalk-backdrop.jpg","The Mug Talk @ CEU stage backdrop"],["img/magic-street-team.jpg","Magic 89.9 Street Team Sessions: resiliency and mental health with Doc Gia Sison"],["img/magic-storytelling.jpg","Magic 89.9 Street Team Sessions: Storytelling 101 with Serge Gabriel"],["img/sebastinian-moa.jpg","Covering the NCAA for The Sebastinian at the Mall of Asia Arena"],["img/ncaa93-pass.jpg","My NCAA Season 93 media pass, courtside"]];
 const lb=document.getElementById("lb"),li=document.getElementById("lbimg"),lc=document.getElementById("lbcap");let gi=0;
 const show=i=>{gi=(i+gal.length)%gal.length;li.src=gal[gi][0];li.alt=gal[gi][1];lc.textContent=gal[gi][1]};
 document.querySelectorAll(".frame").forEach(f=>f.addEventListener("click",()=>{show(+f.dataset.g);lb.showModal()}));
